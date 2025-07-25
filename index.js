@@ -161,3 +161,76 @@ submitBtn.addEventListener('click', function(e) {
     }, 600);
 });
 
+///////////////////////// showcase ///////////////////////
+// Add some interactive functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate stats on scroll
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    const animateStats = () => {
+        statNumbers.forEach(stat => {
+            const finalNumber = stat.textContent;
+            if (finalNumber.includes('K')) {
+                animateNumber(stat, parseInt(finalNumber) * 1000, 'K+');
+            } else if (finalNumber.includes('%')) {
+                animateNumber(stat, parseFloat(finalNumber), '%');
+            } else {
+                stat.textContent = finalNumber;
+            }
+        });
+    };
+
+    const animateNumber = (element, target, suffix) => {
+        let current = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                if (suffix === 'K+') {
+                    element.textContent = Math.floor(target / 1000) + 'K+';
+                } else {
+                    element.textContent = target + suffix;
+                }
+                clearInterval(timer);
+            } else {
+                if (suffix === 'K+') {
+                    element.textContent = Math.floor(current / 1000) + 'K+';
+                } else {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+            }
+        }, 50);
+    };
+
+    // Trigger animation when section is visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(animateStats, 500);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(document.querySelector('.stats-grid'));
+
+    // Handle iframe interactions
+    const iframe = document.querySelector('.product-iframe');
+    const overlay = document.querySelector('.iframe-overlay');
+
+    iframe.addEventListener('load', function() {
+        console.log('Product demo loaded successfully');
+    });
+
+    // Add click tracking for CTA buttons
+    document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            if (this.href === '#') {
+                e.preventDefault();
+                console.log('CTA clicked:', this.textContent.trim());
+                // Here you would typically track the interaction
+            }
+        });
+    });
+});
+
