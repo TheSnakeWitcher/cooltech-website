@@ -12,6 +12,7 @@ body {
     overflow-x: hidden;
 }
 
+
 .hero h1 {
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -103,7 +104,7 @@ nav {
 }
 
 .logo {
-    font-size: 1.75rem;
+    /* font-size: 1.3rem;  */
     font-weight: 800;
     background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
     -webkit-background-clip: text;
@@ -153,8 +154,19 @@ nav {
     transition: transform 0.3s ease;
 }
 
-.dropdown.active .dropdown-toggle::after {
+.dropdown.active .dropdown-toggle::after, .dropdown:hover .dropdown-toggle::after, .dropdown:focus .dropdown-toggle::after {
+     transform: rotate(180deg);
+}
+
+/* .dropdown.active .dropdown-toggle::after {
     transform: rotate(180deg);
+} */
+
+.btn-dropdown:hover{
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
 }
 
 .dropdown-menu {
@@ -171,7 +183,7 @@ nav {
     visibility: hidden;
     transform: translateY(-10px);
     transition: all 0.3s ease;
-    /* border: 1px solid rgba(75, 85, 99, 0.3); */
+    
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -282,7 +294,7 @@ nav {
 /* Hero Section */
 .hero {
     /* margin-top: 70px; */
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
     padding: 6rem 2rem;
     text-align: center;
     position: relative;
@@ -380,7 +392,7 @@ nav {
     z-index: -1;
 }
 
-.sidebar {
+/* .sidebar {
     background: rgba(31, 41, 55, 0.3);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(75, 85, 99, 0.3);
@@ -417,7 +429,7 @@ nav {
     background: rgba(59, 130, 246, 0.2);
     border-color: rgba(59, 130, 246, 0.5);
     transform: translateY(-2px);
-}
+} */
 
 .dashboard {
     flex: 1;
@@ -2503,3 +2515,47 @@ nav {
     animation: pulse 2s infinite;
 }
 
+.btn-close{
+    color: white !important;
+}
+
+.list-group-item{
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: white;
+    transition: all .5s ease !important; 
+}
+.list-group-item:focus{
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6) !important;
+    color: white  !important;
+}
+
+.list-group-item-action{
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    transition: all .5s ease !important; 
+    
+}
+
+.list-group-item-action:hover{
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6) !important;
+    color: white  !important;
+}
+
+.list-group-item-action.active{
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6) !important;
+    color: white  !important;
+
+    
+}
+
+.list-group-item.active{
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: white;
+}
+
+.offcanvas{
+    background: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(20px);
+}
